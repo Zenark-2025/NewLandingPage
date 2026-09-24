@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<title>Zenark — Conscious Intelligence</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  body {
+    overscroll-behavior: none;
+  }
+  main > :first-child { margin-top: 0 !important; }
+  main > :last-child { margin-bottom: 0 !important; }
+}
+::-webkit-scrollbar { display: none; }
+#mobile-menu {
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Apple-grade Motion Easing & Reveals */
+.apple-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(10px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+.apple-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Living Lotus slow rotational breathing */
+@keyframes livingBloomOuter {
+  0%, 100% { transform: rotate(-2.5deg) scale(1); }
+  50% { transform: rotate(2.5deg) scale(1.02); }
+}
+@keyframes livingBloomMid {
+  0%, 100% { transform: rotate(2deg) scale(1.015); }
+  50% { transform: rotate(-2deg) scale(0.985); }
+}
+@keyframes livingBloomInner {
+  0%, 100% { transform: scale(0.96) rotate(-1.5deg); }
+  50% { transform: scale(1.04) rotate(1.5deg); }
+}
+.animate-living-outer {
+  animation: livingBloomOuter 9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+.animate-living-mid {
+  animation: livingBloomMid 7.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+.animate-living-inner {
+  animation: livingBloomInner 6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+/* Waveform breath pacing at 5.5 breaths per minute ~ 10.9s per complete cycle */
+@keyframes breathPace {
+  0%, 100% { transform: scaleY(0.25); opacity: 0.45; }
+  50% { transform: scaleY(1); opacity: 0.95; }
+}
+.wave-bar {
+  animation: breathPace 10.9s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transform-origin: center;
+}
+
+/* Synapse signal travel */
+@keyframes signalTravel {
+  0% { stroke-dashoffset: 40; opacity: 0.3; }
+  50% { opacity: 1; stroke: #D9C7A8; }
+  100% { stroke-dashoffset: 0; opacity: 0.3; }
+}
+.synapse-line {
+  stroke-dasharray: 6 6;
+  animation: signalTravel 4s linear infinite;
+}
+
+/* Magnetic button lilac aura */
+.magnetic-btn {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .apple-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+</style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "on-surface-variant": "#484550",
+        "on-primary-fixed-variant": "#493b85",
+        "on-secondary-container": "#775f33",
+        "tertiary-fixed-dim": "#cdbefb",
+        "champagne-panel": "#F3EDE1",
+        "on-secondary-fixed-variant": "#59431a",
+        "outline": "#797581",
+        "on-surface": "#1c1c18",
+        "on-primary": "#ffffff",
+        "on-error-container": "#93000a",
+        "secondary": "#735b2f",
+        "on-tertiary-fixed-variant": "#4b3f73",
+        "surface": "#fcf9f2",
+        "inverse-on-surface": "#f3f0ea",
+        "text-primary": "#1A1528",
+        "secondary-fixed-dim": "#e2c28d",
+        "background": "#fcf9f2",
+        "primary-container": "#5c4e99",
+        "on-primary-fixed": "#1d0858",
+        "pure-white": "#FFFFFF",
+        "on-tertiary-container": "#d6c9ff",
+        "on-secondary": "#ffffff",
+        "on-background": "#1c1c18",
+        "inverse-primary": "#cbbeff",
+        "error": "#ba1a1a",
+        "surface-container-high": "#ebe8e1",
+        "surface-tint": "#61539f",
+        "inverse-surface": "#31312c",
+        "surface-container-highest": "#e5e2db",
+        "on-error": "#ffffff",
+        "on-tertiary-fixed": "#1f1245",
+        "primary-fixed-dim": "#cbbeff",
+        "surface-container-low": "#f6f3ec",
+        "satin-gold-bright": "#D9C7A8",
+        "tertiary": "#463a6e",
+        "surface-container-lowest": "#ffffff",
+        "secondary-fixed": "#ffdea8",
+        "primary-fixed": "#e6deff",
+        "tertiary-container": "#5d5187",
+        "tertiary-fixed": "#e8deff",
+        "surface-bright": "#fcf9f2",
+        "text-muted": "#6E697F",
+        "surface-dim": "#dcdad3",
+        "surface-variant": "#e5e2db",
+        "surface-container": "#f0eee7",
+        "on-tertiary": "#ffffff",
+        "secondary-container": "#fcdba4",
+        "on-secondary-fixed": "#271900",
+        "primary": "#443680",
+        "error-container": "#ffdad6",
+        "deep-aubergine": "#2B2350",
+        "outline-variant": "#c9c4d2",
+        "on-primary-container": "#d5caff"
+      },
+      borderRadius: {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      spacing: {
+        "space-md": "1rem",
+        "gutter-mobile": "1rem",
+        "margin": "3rem",
+        "space-sm": "0.5rem",
+        "gutter": "1.5rem",
+        "space-lg": "1.75rem",
+        "space-xs": "0.25rem",
+        "margin-mobile": "1.25rem",
+        "space-xl": "3rem"
+      },
+      fontFamily: {
+        "label-sm": ["Inter"],
+        "body-lg": ["Inter"],
+        "display-hero-mobile": ["Playfair Display"],
+        "headline-sm": ["Playfair Display"],
+        "body-sm": ["Inter"],
+        "body-md": ["Inter"],
+        "label-md": ["Inter"],
+        "headline-lg-mobile": ["Playfair Display"],
+        "headline-lg": ["Playfair Display"],
+        "display-hero": ["Playfair Display"],
+        "headline-md": ["Playfair Display"]
+      },
+      fontSize: {
+        "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.06em", fontWeight: "500" }],
+        "body-lg": ["18px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "400" }],
+        "display-hero-mobile": ["40px", { lineHeight: "48px", letterSpacing: "-0.015em", fontWeight: "400" }],
+        "headline-sm": ["22px", { lineHeight: "30px", letterSpacing: "0em", fontWeight: "600" }],
+        "body-sm": ["13px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "400" }],
+        "body-md": ["15px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" }],
+        "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.08em", fontWeight: "600" }],
+        "headline-lg-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "400" }],
+        "headline-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.015em", fontWeight: "400" }],
+        "display-hero": ["64px", { lineHeight: "72px", letterSpacing: "-0.02em", fontWeight: "400" }],
+        "headline-md": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "500" }]
+      }
+    }
+  }
+};
+</script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-deep-aubergine">
+<!-- Global Navigation Chrome -->
+<header class="fixed top-0 left-0 w-full z-50 bg-pure-white/80 backdrop-blur-[20px] shadow-[0_1px_8px_rgba(43,35,80,0.04)]">
+<div class="h-[72px] max-w-7xl mx-auto px-gutter-mobile lg:px-gutter flex items-center justify-between">
+<a class="flex items-center group cursor-pointer" data-path="home" href="#">
+<span class="font-headline-sm text-headline-sm text-text-primary tracking-[0.35em] uppercase select-none transition-transform duration-300 group-hover:scale-[1.01]">
+        Z E N A R K<span class="text-primary-container font-headline-sm ml-[1px]">.</span>
+</span>
+</a>
+<nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="bg-surface-container-high text-on-surface font-label-md rounded-full shadow-sm">
+<a aria-current="page" class="px-space-md py-space-xs uppercase tracking-[0.08em] transition-all duration-300 bg-surface-container-high text-on-surface font-label-md rounded-full shadow-sm" data-path="home" href="#">Home</a>
+<a class="px-space-md py-space-xs font-label-md text-label-md uppercase tracking-[0.08em] text-on-surface-variant hover:text-on-surface transition-all duration-300" data-path="home" href="#personal-sanctuary">For You</a>
+<a class="px-space-md py-space-xs font-label-md text-label-md uppercase tracking-[0.08em] text-on-surface-variant hover:text-on-surface transition-all duration-300" data-path="schools" href="#">For Schools</a>
+<a class="px-space-md py-space-xs font-label-md text-label-md uppercase tracking-[0.08em] text-on-surface-variant hover:text-on-surface transition-all duration-300" data-path="science" href="#">Science</a>
+<a class="px-space-md py-space-xs font-label-md text-label-md uppercase tracking-[0.08em] text-on-surface-variant hover:text-on-surface transition-all duration-300" data-path="about" href="#">About</a>
+</nav>
+<div class="flex items-center gap-space-md">
+<a class="magnetic-btn hidden sm:inline-flex items-center justify-center px-space-lg py-space-sm rounded-full bg-primary-container text-on-primary font-label-md text-label-md tracking-[0.08em] uppercase shadow-[0_4px_16px_rgba(92,78,153,0.22)] hover:shadow-[0_8px_26px_rgba(92,78,153,0.4)] active:scale-[0.98] transition-all duration-300" href="mailto:management@zenark.in">Talk to us</a>
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-on-primary text-[18px]">person</span>
+</div>
+<button aria-label="Toggle Menu" class="lg:hidden flex items-center justify-center w-10 h-10 rounded-full bg-champagne-panel/60 text-secondary hover:text-deep-aubergine transition-colors focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden'); document.getElementById('mobile-menu').classList.toggle('flex');" type="button">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+</div>
+</div>
+<div class="hidden fixed inset-x-0 top-[72px] bottom-0 bg-surface/95 backdrop-blur-2xl flex-col justify-between p-margin-mobile z-40 lg:hidden" id="mobile-menu">
+<nav class="flex flex-col gap-space-sm pt-space-md" data-active-classes="bg-surface-container-high text-on-surface font-label-md rounded-xl">
+<a aria-current="page" class="px-space-md py-space-md transition-colors bg-surface-container-high text-on-surface font-label-md rounded-xl" data-path="home" href="#" onclick="document.getElementById('mobile-menu').classList.add('hidden');">Home</a>
+<a class="px-space-md py-space-md font-headline-sm text-headline-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="#personal-sanctuary" onclick="document.getElementById('mobile-menu').classList.add('hidden');">For You</a>
+<a class="px-space-md py-space-md font-headline-sm text-headline-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="schools" href="#" onclick="document.getElementById('mobile-menu').classList.add('hidden');">For Schools</a>
+<a class="px-space-md py-space-md font-headline-sm text-headline-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="science" href="#" onclick="document.getElementById('mobile-menu').classList.add('hidden');">Science</a>
+<a class="px-space-md py-space-md font-headline-sm text-headline-sm text-on-surface-variant hover:text-on-surface transition-colors" data-path="about" href="#" onclick="document.getElementById('mobile-menu').classList.add('hidden');">About</a>
+</nav>
+<div class="flex flex-col gap-space-md pb-space-lg">
+<a class="w-full text-center py-space-md rounded-full bg-primary-container text-on-primary font-label-md text-label-md tracking-[0.08em] uppercase shadow-lg" href="mailto:management@zenark.in">Talk to us</a>
+<p class="text-center font-body-sm text-body-sm text-text-muted">Empathetic artificial intelligence for conscious minds.</p>
+</div>
+</div>
+</header>
+<main class="w-full pt-[72px] bg-background min-h-screen">
+<div class="flex flex-col w-full overflow-x-hidden select-none">
+<!-- SECTION 1: HERO SANCTUARY WITH LAYERED-GLASS LOTUS & PARALLAX -->
+<section class="relative w-full min-h-[942px] flex flex-col items-center justify-center bg-pure-white px-gutter-mobile lg:px-gutter py-space-xl overflow-hidden" id="hero-section">
+<!-- Ambient Gold Dust Floating Canvas (3 Layered Depths) -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden" id="hero-dust-field">
+<!-- Depth 1: Far (slow drift) -->
+<div class="absolute w-1 h-1 rounded-full bg-[#D9C7A8]/20 top-12 left-1/4 parallax-layer" data-depth="0.03"></div>
+<div class="absolute w-1.5 h-1.5 rounded-full bg-[#D9C7A8]/15 top-1/3 left-16 parallax-layer" data-depth="0.04"></div>
+<div class="absolute w-1 h-1 rounded-full bg-[#D9C7A8]/20 bottom-16 left-1/3 parallax-layer" data-depth="0.03"></div>
+<!-- Depth 2: Mid -->
+<div class="absolute w-2 h-2 rounded-full bg-[#D9C7A8]/25 top-24 right-1/4 parallax-layer" data-depth="0.07"></div>
+<div class="absolute w-1.5 h-1.5 rounded-full bg-[#D9C7A8]/20 bottom-28 right-1/3 parallax-layer" data-depth="0.06"></div>
+<!-- Depth 3: Foreground (luminous micro-pings) -->
+<div class="absolute w-1 h-1 rounded-full bg-[#D9C7A8]/30 top-1/2 right-20 animate-ping parallax-layer" data-depth="0.1" style="animation-duration: 7s;"></div>
+<div class="absolute w-1 h-1 rounded-full bg-[#D9C7A8]/30 top-2/3 left-1/5 animate-pulse parallax-layer" data-depth="0.09" style="animation-duration: 5s;"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[680px] h-[680px] rounded-full bg-gradient-to-tr from-primary-fixed-dim/20 via-satin-gold-bright/10 to-transparent blur-3xl pointer-events-none parallax-light" id="hero-ambient-light"></div>
+</div>
+<!-- Centered Editorial Stack -->
+<div class="relative z-10 max-w-5xl mx-auto flex flex-col items-center text-center">
+<!-- Kicker -->
+<div class="apple-reveal inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-champagne-panel/60 mb-space-lg shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.32em] text-secondary font-semibold">A Conscious Wellness Intelligence</span>
+</div>
+<!-- Grand Statement -->
+<h1 class="apple-reveal font-display-hero text-headline-lg lg:text-display-hero text-text-primary max-w-4xl tracking-tight mb-space-lg">
+          Every mind deserves <span class="italic font-display-hero text-primary">to be heard.</span>
+</h1>
+<!-- THE LAYERED-GLASS LOTUS BRAND MARK (440px Desktop, 260px Mobile) with ±5° mouse tilt -->
+<div class="relative w-[260px] h-[260px] lg:w-[440px] lg:h-[440px] my-space-md flex items-center justify-center transition-transform duration-300 ease-out" id="lotus-stage" style="perspective: 1000px; transform-style: preserve-3d;">
+<!-- Outer Tier: 8 Petals (translucent lilac-to-violet gradient, 1px satin-gold rim, living bloom) -->
+<div class="absolute inset-0 flex items-center justify-center animate-living-outer">
+<svg class="w-full h-full filter drop-shadow-[0_20px_50px_rgba(92,78,153,0.18)]" viewbox="0 0 440 440">
+<defs>
+<lineargradient id="outerPetalGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#FAF7F0" stop-opacity="0.85"></stop>
+<stop offset="60%" stop-color="#e6deff" stop-opacity="0.45"></stop>
+<stop offset="100%" stop-color="#5c4e99" stop-opacity="0.22"></stop>
+</lineargradient>
+</defs>
+<g transform="translate(220, 220)">
+<path d="M 0,-210 C 35,-150 45,-60 0,-15 C -45,-60 -35,-150 0,-210 Z" fill="url(#outerPetalGrad)" stroke="#D9C7A8" stroke-opacity="0.8" stroke-width="1"></path>
+<path d="M 0,-210 C 35,-150 45,-60 0,-15 C -45,-60 -35,-150 0,-210 Z" fill="url(#outerPetalGrad)" stroke="#D9C7A8" stroke-opacity="0.8" stroke-width="1" transform="rotate(45)"></path>
+<path d="M 0,-210 C 35,-150 45,-60 0,-15 C -45,-60 -35,-150 0,-210 Z" fill="url(#outerPetalGrad)" stroke="#D9C7A8" stroke-opacity="0.8" stroke-width="1" transform="rotate(90)"></path>
+<path d="M 0,-210 C 35,-150 45,-60 0,-15 C -45,-60 -35,-150 0,-210 Z" fill="url(#outerPetalGrad)" stroke="#D9C7A8" stroke-opacity="0.8" stroke-width="1" transform="rotate(135)"></path>
+<path d="M 0,-210 C 35,-150 45,-60 0,-15 C -45,-60 -35,-150 0,-210 Z" fill="url(#outerPetalGrad)" stroke="#D9C7A8" stroke-opacity="0.8" stroke-width="1" transform="rotate(180)"></path>
+<path d="M 0,-210 C 35,-150 45,-60 0,-15 C -45,-60 -35,-150 0,-210 Z" fill="url(#outerPetalGrad)" stroke="#D9C7A8" stroke-opacity="0.8" stroke-width="1" transform="rotate(225)"></path>
+<path d="M 0,-210 C 35,-150 45,-60 0,-15 C -45,-60 -35,-150 0,-210 Z" fill="url(#outerPetalGrad)" stroke="#D9C7A8" stroke-opacity="0.8" stroke-width="1" transform="rotate(270)"></path>
+<path d="M 0,-210 C 35,-150 45,-60 0,-15 C -45,-60 -35,-150 0,-210 Z" fill="url(#outerPetalGrad)" stroke="#D9C7A8" stroke-opacity="0.8" stroke-width="1" transform="rotate(315)"></path>
+</g>
+</svg>
+</div>
+<!-- Middle Tier: 6 Petals (counter-breathing) -->
+<div class="absolute inset-5 flex items-center justify-center animate-living-mid">
+<svg class="w-full h-full filter drop-shadow-[0_15px_35px_rgba(92,78,153,0.15)]" viewbox="0 0 360 360">
+<defs>
+<lineargradient id="midPetalGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"></stop>
+<stop offset="60%" stop-color="#cdbefb" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="#5c4e99" stop-opacity="0.25"></stop>
+</lineargradient>
+</defs>
+<g transform="translate(180, 180)">
+<path d="M 0,-155 C 28,-110 36,-45 0,-12 C -36,-45 -28,-110 0,-155 Z" fill="url(#midPetalGrad)" stroke="#D9C7A8" stroke-opacity="0.9" stroke-width="1"></path>
+<path d="M 0,-155 C 28,-110 36,-45 0,-12 C -36,-45 -28,-110 0,-155 Z" fill="url(#midPetalGrad)" stroke="#D9C7A8" stroke-opacity="0.9" stroke-width="1" transform="rotate(60)"></path>
+<path d="M 0,-155 C 28,-110 36,-45 0,-12 C -36,-45 -28,-110 0,-155 Z" fill="url(#midPetalGrad)" stroke="#D9C7A8" stroke-opacity="0.9" stroke-width="1" transform="rotate(120)"></path>
+<path d="M 0,-155 C 28,-110 36,-45 0,-12 C -36,-45 -28,-110 0,-155 Z" fill="url(#midPetalGrad)" stroke="#D9C7A8" stroke-opacity="0.9" stroke-width="1" transform="rotate(180)"></path>
+<path d="M 0,-155 C 28,-110 36,-45 0,-12 C -36,-45 -28,-110 0,-155 Z" fill="url(#midPetalGrad)" stroke="#D9C7A8" stroke-opacity="0.9" stroke-width="1" transform="rotate(240)"></path>
+<path d="M 0,-155 C 28,-110 36,-45 0,-12 C -36,-45 -28,-110 0,-155 Z" fill="url(#midPetalGrad)" stroke="#D9C7A8" stroke-opacity="0.9" stroke-width="1" transform="rotate(300)"></path>
+</g>
+</svg>
+</div>
+<!-- Inner Tier: 5 Petals (living glass pulse) -->
+<div class="absolute inset-12 flex items-center justify-center animate-living-inner">
+<svg class="w-full h-full" viewbox="0 0 280 280">
+<defs>
+<lineargradient id="innerPetalGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"></stop>
+<stop offset="50%" stop-color="#FAF7F0" stop-opacity="0.55"></stop>
+<stop offset="100%" stop-color="#5c4e99" stop-opacity="0.3"></stop>
+</lineargradient>
+</defs>
+<g transform="translate(140, 140)">
+<path d="M 0,-105 C 22,-75 28,-30 0,-8 C -28,-30 -22,-75 0,-105 Z" fill="url(#innerPetalGrad)" stroke="#D9C7A8" stroke-opacity="1" stroke-width="1"></path>
+<path d="M 0,-105 C 22,-75 28,-30 0,-8 C -28,-30 -22,-75 0,-105 Z" fill="url(#innerPetalGrad)" stroke="#D9C7A8" stroke-opacity="1" stroke-width="1" transform="rotate(72)"></path>
+<path d="M 0,-105 C 22,-75 28,-30 0,-8 C -28,-30 -22,-75 0,-105 Z" fill="url(#innerPetalGrad)" stroke="#D9C7A8" stroke-opacity="1" stroke-width="1" transform="rotate(144)"></path>
+<path d="M 0,-105 C 22,-75 28,-30 0,-8 C -28,-30 -22,-75 0,-105 Z" fill="url(#innerPetalGrad)" stroke="#D9C7A8" stroke-opacity="1" stroke-width="1" transform="rotate(216)"></path>
+<path d="M 0,-105 C 22,-75 28,-30 0,-8 C -28,-30 -22,-75 0,-105 Z" fill="url(#innerPetalGrad)" stroke="#D9C7A8" stroke-opacity="1" stroke-width="1" transform="rotate(288)"></path>
+</g>
+</svg>
+</div>
+<!-- Luminous 14px Stamen Core with warm grounding shadow [0 30px 80px rgba(92,78,153,.22)] -->
+<div class="relative z-20 w-4 h-4 rounded-full bg-satin-gold-bright shadow-[0_0_24px_#D9C7A8,0_30px_80px_rgba(92,78,153,0.22)] flex items-center justify-center cursor-pointer group">
+<div class="w-1.5 h-1.5 rounded-full bg-pure-white animate-ping" style="animation-duration: 3.2s;"></div>
+</div>
+</div>
+<!-- Sub-line -->
+<p class="apple-reveal font-body-lg text-body-md lg:text-body-lg text-text-muted max-w-xl mx-auto mb-space-lg leading-relaxed">
+          Zenark is one AI that connects how you sleep, what you feel, and when you need help — into a living picture of your mind. For you. For every school. For a generation.
+        </p>
+<!-- Magnetic CTAs with Lilac Aura -->
+<div class="apple-reveal flex flex-col sm:flex-row items-center justify-center gap-space-md">
+<a class="magnetic-btn w-full sm:w-auto px-space-xl py-space-sm rounded-full bg-primary-container text-on-primary font-label-md text-label-md uppercase tracking-[0.08em] shadow-[0_8px_24px_rgba(92,78,153,0.25)] hover:shadow-[0_12px_36px_rgba(203,190,255,0.45)] active:scale-[0.98] transition-all duration-300" href="mailto:management@zenark.in">
+            Talk to us
+          </a>
+<a class="w-full sm:w-auto px-space-xl py-space-sm rounded-full bg-pure-white text-deep-aubergine font-label-md text-label-md uppercase tracking-[0.08em] shadow-[0_2px_12px_rgba(43,35,80,0.06)] hover:bg-champagne-panel/50 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-space-xs" href="#meet-zen">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            Meet Zen
+          </a>
+</div>
+</div>
+</section>
+<!-- SECTION 2: MEET ZEN (LIVE PHONE & VOICE INTERACTIVE DEMO) -->
+<section class="relative w-full py-space-xl bg-pure-white px-gutter-mobile lg:px-gutter" id="meet-zen">
+<div class="max-w-7xl mx-auto flex flex-col items-center">
+<!-- Section Header -->
+<div class="text-center max-w-2xl mb-space-xl apple-reveal">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.32em] text-secondary font-semibold block mb-space-xs">The Companion</span>
+<h2 class="font-headline-lg text-headline-md lg:text-headline-lg text-text-primary tracking-tight mb-space-sm">
+            A friend, <span class="italic font-headline-lg text-primary">not an elder.</span>
+</h2>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed">
+            Zen is a 24/7 companion trained on CBT and DBT frameworks under licensed psychiatric supervision. It never judges. It never diagnoses. And it is always awake.
+          </p>
+</div>
+<!-- Center Stage: Glass Phone Panel (320x660, 48px radius) -->
+<div class="apple-reveal relative w-[320px] sm:w-[360px] h-[660px] rounded-[48px] bg-deep-aubergine shadow-[0_36px_90px_rgba(43,35,80,0.32)] overflow-hidden flex flex-col p-5 border border-white/10">
+<!-- Notch & Sensors -->
+<div class="w-24 h-4 rounded-full bg-black/40 mx-auto mb-3 flex items-center justify-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-on-surface-variant/40"></div>
+<div class="w-10 h-1 rounded-full bg-on-surface-variant/30"></div>
+</div>
+<!-- Companion Status Header inside OS -->
+<div class="flex items-center justify-between pb-3 mb-3 bg-white/5 rounded-2xl px-3 py-2 border border-white/5">
+<div class="flex items-center gap-2.5">
+<div class="relative w-7 h-7 rounded-full bg-primary-container flex items-center justify-center shadow-inner">
+<span class="w-2 h-2 rounded-full bg-satin-gold-bright animate-ping" style="animation-duration: 3s;"></span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-pure-white font-medium">Zen</div>
+<div class="font-label-sm text-label-sm text-tertiary-fixed-dim/80 text-[10px]" id="os-status-text">Active • Introspective listening</div>
+</div>
+</div>
+<!-- Mode Toggle: Chat vs Breath Voice -->
+<button class="px-2 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-satin-gold-bright text-[11px] font-label-sm uppercase tracking-wider flex items-center gap-1 transition-colors" id="voice-toggle-btn" onclick="toggleVoiceMode()">
+<span class="material-symbols-outlined text-[14px]">graphic_eq</span>
+<span id="voice-label">Voice</span>
+</button>
+</div>
+<!-- Voice / Waveform Overlay (Pulsing at 5.5 breaths/minute ~ 10.9s) -->
+<div class="hidden flex-1 flex-col items-center justify-center p-4 text-center" id="voice-mode-panel">
+<div class="w-20 h-20 rounded-full bg-primary-container/30 border border-[#D9C7A8]/30 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(217,199,168,0.2)]">
+<span class="material-symbols-outlined text-[#D9C7A8] text-[36px]">air</span>
+</div>
+<p class="font-headline-sm text-[16px] text-pure-white font-normal mb-1">Pranayama Resonance</p>
+<p class="font-body-sm text-[11px] text-tertiary-fixed-dim/80 mb-6 tracking-wide">5.5 breaths per minute cadence</p>
+<!-- Dynamic Waveform Bars -->
+<div class="flex items-center justify-center gap-1.5 h-16 w-full max-w-[200px]">
+<div class="w-1 bg-[#D9C7A8] rounded-full h-8 wave-bar" style="animation-delay: 0s;"></div>
+<div class="w-1 bg-[#cdbefb] rounded-full h-12 wave-bar" style="animation-delay: 0.8s;"></div>
+<div class="w-1 bg-[#FAF7F0] rounded-full h-16 wave-bar" style="animation-delay: 1.6s;"></div>
+<div class="w-1 bg-[#D9C7A8] rounded-full h-14 wave-bar" style="animation-delay: 2.4s;"></div>
+<div class="w-1 bg-[#cdbefb] rounded-full h-10 wave-bar" style="animation-delay: 3.2s;"></div>
+<div class="w-1 bg-[#FAF7F0] rounded-full h-14 wave-bar" style="animation-delay: 4.0s;"></div>
+<div class="w-1 bg-[#D9C7A8] rounded-full h-8 wave-bar" style="animation-delay: 4.8s;"></div>
+</div>
+<span class="text-[11px] font-label-sm text-tertiary-fixed-dim/60 mt-6 tracking-widest uppercase">Inhale • Rest • Exhale</span>
+</div>
+<!-- Chat Scroll Area -->
+<div class="flex-1 overflow-y-auto space-y-3 pr-1 text-left text-pure-white" id="chat-stream">
+<div class="flex gap-2 items-start">
+<div class="w-6 h-6 rounded-full bg-primary flex-shrink-0 flex items-center justify-center text-[10px] text-pure-white font-serif">Z</div>
+<div class="max-w-[82%] p-3 rounded-2xl rounded-tl-sm bg-white/10 text-body-sm text-pure-white leading-relaxed shadow-sm border border-white/5">
+                I'm right here with you. Take your time — what feels heaviest on your thoughts right now?
+              </div>
+</div>
+</div>
+<!-- 3-Dot Typing Indicator Container (Hidden by default) -->
+<div class="hidden flex gap-2 items-center px-3 py-2 rounded-2xl bg-white/5 w-fit mt-2 border border-white/5" id="typing-bubble">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed-dim animate-bounce" style="animation-delay: 0ms;"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed-dim animate-bounce" style="animation-delay: 150ms;"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed-dim animate-bounce" style="animation-delay: 300ms;"></span>
+</div>
+<!-- Mock Phone Input Bar -->
+<div class="mt-3 pt-2">
+<div class="w-full bg-white/10 rounded-full px-4 py-2.5 flex items-center justify-between text-pure-white/50 font-body-sm text-body-sm border border-white/5">
+<span>Confide quietly...</span>
+<span class="material-symbols-outlined text-[18px] text-satin-gold-bright cursor-pointer hover:scale-110 transition-transform" onclick="toggleVoiceMode()">mic</span>
+</div>
+</div>
+</div>
+<!-- Interactive Prompt Chips -->
+<div class="apple-reveal mt-space-lg flex flex-wrap justify-center gap-space-sm max-w-2xl px-gutter-mobile">
+<button class="prompt-chip px-space-md py-space-xs rounded-full bg-champagne-panel/70 hover:bg-champagne-panel text-deep-aubergine font-label-md text-label-md tracking-[0.04em] shadow-sm transition-all duration-200 hover:scale-105 active:scale-95 text-left border border-black/5" onclick="triggerDemoChat('I can\'t sleep before exams.')">
+            “I can't sleep before exams.”
+          </button>
+<button class="prompt-chip px-space-md py-space-xs rounded-full bg-champagne-panel/70 hover:bg-champagne-panel text-deep-aubergine font-label-md text-label-md tracking-[0.04em] shadow-sm transition-all duration-200 hover:scale-105 active:scale-95 text-left border border-black/5" onclick="triggerDemoChat('I feel like I\'m falling behind.')">
+            “I feel like I'm falling behind.”
+          </button>
+<button class="prompt-chip px-space-md py-space-xs rounded-full bg-champagne-panel/70 hover:bg-champagne-panel text-deep-aubergine font-label-md text-label-md tracking-[0.04em] shadow-sm transition-all duration-200 hover:scale-105 active:scale-95 text-left border border-black/5" onclick="triggerDemoChat('I just need to vent.')">
+            “I just need to vent.”
+          </button>
+</div>
+<!-- Micro Caption -->
+<p class="apple-reveal mt-space-md font-body-sm text-body-sm text-text-muted text-center max-w-lg">
+          A guided demo of the real thing. Zen supports — it never diagnoses, and every conversation stays private by architecture.
+        </p>
+</div>
+</section>
+<!-- SECTION 3: THE CNS (CENTRAL NERVOUS SYSTEM) SYNAPSE INTERACTIVITY -->
+<section class="relative w-full py-space-xl bg-surface-container-low px-gutter-mobile lg:px-gutter overflow-hidden">
+<div class="max-w-7xl mx-auto flex flex-col items-center text-center">
+<span class="apple-reveal font-label-sm text-label-sm uppercase tracking-[0.32em] text-secondary font-semibold block mb-space-xs">Holistic Synapse</span>
+<h2 class="apple-reveal font-headline-lg text-headline-md lg:text-headline-lg text-text-primary tracking-tight mb-space-sm">
+          Everything connects. <span class="italic font-headline-lg text-primary">Finally.</span>
+</h2>
+<p class="apple-reveal font-body-md text-body-md text-text-muted max-w-xl mx-auto mb-space-xl leading-relaxed">
+          Zen isn't a chat window. It's the central nervous system of your mental health — every signal informing every response, every day compounding into insight.
+        </p>
+<!-- CNS Orbit Visualization with Active Pulse Waves -->
+<div class="relative w-full max-w-4xl h-[460px] flex items-center justify-center my-space-md" id="synapse-network">
+<!-- Synapse Connecting Lines -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" viewbox="0 0 800 460">
+<defs>
+<lineargradient id="synapseGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#5C4E99" stop-opacity="0.25"></stop>
+<stop offset="50%" stop-color="#D9C7A8" stop-opacity="0.85"></stop>
+<stop offset="100%" stop-color="#5C4E99" stop-opacity="0.25"></stop>
+</lineargradient>
+</defs>
+<!-- 6 Synapse Lines with moving dash signals -->
+<line class="synapse-line" stroke="url(#synapseGrad)" stroke-width="1.8" x1="400" x2="160" y1="230" y2="120"></line>
+<line class="synapse-line" stroke="url(#synapseGrad)" stroke-width="1.8" x1="400" x2="400" y1="230" y2="70"></line>
+<line class="synapse-line" stroke="url(#synapseGrad)" stroke-width="1.8" x1="400" x2="640" y1="230" y2="120"></line>
+<line class="synapse-line" stroke="url(#synapseGrad)" stroke-width="1.8" x1="400" x2="640" y1="230" y2="340"></line>
+<line class="synapse-line" stroke="url(#synapseGrad)" stroke-width="1.8" x1="400" x2="400" y1="230" y2="390"></line>
+<line class="synapse-line" stroke="url(#synapseGrad)" stroke-width="1.8" x1="400" x2="160" y1="230" y2="340"></line>
+<!-- Orbit track -->
+<ellipse cx="400" cy="230" fill="none" rx="300" ry="160" stroke="#D9C7A8" stroke-dasharray="6 6" stroke-opacity="0.4" stroke-width="0.75"></ellipse>
+</svg>
+<!-- Center Core: Mini Luminous Lotus Pulse -->
+<div class="relative z-10 w-28 h-28 rounded-full bg-pure-white shadow-[0_16px_40px_rgba(92,78,153,0.22)] flex flex-col items-center justify-center p-3 text-center cursor-pointer transition-transform hover:scale-110 duration-300">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center mb-1">
+<span class="w-3 h-3 rounded-full bg-primary-container animate-ping" style="animation-duration: 2.8s;"></span>
+</div>
+<span class="font-headline-sm text-headline-sm text-deep-aubergine leading-none font-semibold">ZEN</span>
+<span class="font-label-sm text-[9px] uppercase tracking-widest text-secondary font-medium mt-1">Conscious Core</span>
+</div>
+<!-- Orbiting Nodes with hover highlights -->
+<!-- Node 1: Sleep -->
+<div class="synapse-node absolute left-4 sm:left-16 top-10 sm:top-14 p-4 rounded-2xl bg-pure-white/95 backdrop-blur-md shadow-[0_8px_24px_rgba(43,35,80,0.06)] border border-[#D9C7A8]/30 flex items-center gap-3 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_32px_rgba(92,78,153,0.18)]" onmouseenter="pulseCenter()">
+<div class="w-9 h-9 rounded-xl bg-champagne-panel flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">bedtime</span>
+</div>
+<div class="text-left">
+<div class="font-headline-sm text-body-md font-semibold text-text-primary">Sleep Architecture</div>
+<div class="font-body-sm text-body-sm text-text-muted">REM rhythm &amp; somatic rest</div>
+</div>
+</div>
+<!-- Node 2: Journal -->
+<div class="synapse-node absolute top-2 sm:top-4 p-4 rounded-2xl bg-pure-white/95 backdrop-blur-md shadow-[0_8px_24px_rgba(43,35,80,0.06)] border border-[#D9C7A8]/30 flex items-center gap-3 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_32px_rgba(92,78,153,0.18)]" onmouseenter="pulseCenter()">
+<div class="w-9 h-9 rounded-xl bg-champagne-panel flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+</div>
+<div class="text-left">
+<div class="font-headline-sm text-body-md font-semibold text-text-primary">Unstructured Journal</div>
+<div class="font-body-sm text-body-sm text-text-muted">Semantic sentiment tracking</div>
+</div>
+</div>
+<!-- Node 3: Breath -->
+<div class="synapse-node absolute right-4 sm:right-16 top-10 sm:top-14 p-4 rounded-2xl bg-pure-white/95 backdrop-blur-md shadow-[0_8px_24px_rgba(43,35,80,0.06)] border border-[#D9C7A8]/30 flex items-center gap-3 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_32px_rgba(92,78,153,0.18)]" onmouseenter="pulseCenter()">
+<div class="w-9 h-9 rounded-xl bg-champagne-panel flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">air</span>
+</div>
+<div class="text-left">
+<div class="font-headline-sm text-body-md font-semibold text-text-primary">Pranayama Pacing</div>
+<div class="font-body-sm text-body-sm text-text-muted">Vagal tone modulation</div>
+</div>
+</div>
+<!-- Node 4: Meditation -->
+<div class="synapse-node absolute right-4 sm:right-16 bottom-10 sm:bottom-14 p-4 rounded-2xl bg-pure-white/95 backdrop-blur-md shadow-[0_8px_24px_rgba(43,35,80,0.06)] border border-[#D9C7A8]/30 flex items-center gap-3 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_32px_rgba(92,78,153,0.18)]" onmouseenter="pulseCenter()">
+<div class="w-9 h-9 rounded-xl bg-champagne-panel flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">self_improvement</span>
+</div>
+<div class="text-left">
+<div class="font-headline-sm text-body-md font-semibold text-text-primary">Micro-Meditation</div>
+<div class="font-body-sm text-body-sm text-text-muted">Guided acoustic anchors</div>
+</div>
+</div>
+<!-- Node 5: Mood -->
+<div class="synapse-node absolute bottom-2 sm:bottom-4 p-4 rounded-2xl bg-pure-white/95 backdrop-blur-md shadow-[0_8px_24px_rgba(43,35,80,0.06)] border border-[#D9C7A8]/30 flex items-center gap-3 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_32px_rgba(92,78,153,0.18)]" onmouseenter="pulseCenter()">
+<div class="w-9 h-9 rounded-xl bg-champagne-panel flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">ecg_heart</span>
+</div>
+<div class="text-left">
+<div class="font-headline-sm text-body-md font-semibold text-text-primary">Affect Trajectory</div>
+<div class="font-body-sm text-body-sm text-text-muted">Real-time DBT quadrant</div>
+</div>
+</div>
+<!-- Node 6: Consultation -->
+<div class="synapse-node absolute left-4 sm:left-16 bottom-10 sm:bottom-14 p-4 rounded-2xl bg-pure-white/95 backdrop-blur-md shadow-[0_8px_24px_rgba(43,35,80,0.06)] border border-[#D9C7A8]/30 flex items-center gap-3 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_12px_32px_rgba(92,78,153,0.18)]" onmouseenter="pulseCenter()">
+<div class="w-9 h-9 rounded-xl bg-champagne-panel flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">medical_services</span>
+</div>
+<div class="text-left">
+<div class="font-headline-sm text-body-md font-semibold text-text-primary">Clinical Relay</div>
+<div class="font-body-sm text-body-sm text-text-muted">Licensed human escalation</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: FOR YOU (PERSONAL SANCTUARY WITH DYNAMIC PHONE CROSSFADE) -->
+<section class="relative w-full py-space-xl bg-pure-white px-gutter-mobile lg:px-gutter" id="personal-sanctuary">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Left Editorial Feature Blocks -->
+<div class="lg:col-span-6 space-y-space-lg">
+<div class="apple-reveal">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.32em] text-secondary font-semibold block mb-space-xs">Personal Sanctuary</span>
+<h2 class="font-headline-lg text-headline-md lg:text-headline-lg text-text-primary tracking-tight">
+              Designed for stillness, engineered for real human nuance.
+            </h2>
+</div>
+<!-- 4 Interactive Feature Cards crossfading the phone display -->
+<div class="apple-reveal space-y-space-md pt-space-xs">
+<div class="feature-card cursor-pointer p-space-md rounded-2xl bg-champagne-panel/60 border border-primary/20 transition-all duration-300 shadow-sm" data-feature="space" onclick="selectFeature('space', this)">
+<div class="flex items-center gap-3 mb-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<h3 class="font-headline-sm text-body-lg font-semibold text-text-primary">Zen Space</h3>
+</div>
+<p class="font-body-md text-body-md text-text-muted pl-5">
+                An unhurried sanctuary to speak with Zen in uninhibited safety. Zero telemetry logs stored on ad networks.
+              </p>
+</div>
+<div class="feature-card cursor-pointer p-space-md rounded-2xl bg-surface-container-low hover:bg-champagne-panel/40 border border-transparent transition-all duration-300 shadow-sm" data-feature="streaks" onclick="selectFeature('streaks', this)">
+<div class="flex items-center gap-3 mb-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<h3 class="font-headline-sm text-body-lg font-semibold text-text-primary">Streaks &amp; Rhythms</h3>
+</div>
+<p class="font-body-md text-body-md text-text-muted pl-5">
+                Rewarding internal consistency over aggressive gamification. Mindful presence without dopamine guilt.
+              </p>
+</div>
+<div class="feature-card cursor-pointer p-space-md rounded-2xl bg-surface-container-low hover:bg-champagne-panel/40 border border-transparent transition-all duration-300 shadow-sm" data-feature="reports" onclick="selectFeature('reports', this)">
+<div class="flex items-center gap-3 mb-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<h3 class="font-headline-sm text-body-lg font-semibold text-text-primary">Monthly Portrait Reports</h3>
+</div>
+<p class="font-body-md text-body-md text-text-muted pl-5">
+                High-resolution longitudinal synthesis of mental trajectories, emotional shifts, and restorative cycles.
+              </p>
+</div>
+<div class="feature-card cursor-pointer p-space-md rounded-2xl bg-surface-container-low hover:bg-champagne-panel/40 border border-transparent transition-all duration-300 shadow-sm" data-feature="clinical" onclick="selectFeature('clinical', this)">
+<div class="flex items-center gap-3 mb-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<h3 class="font-headline-sm text-body-lg font-semibold text-text-primary">Clinical Care Re-Engineered</h3>
+</div>
+<p class="font-body-md text-body-md text-text-muted pl-5">
+                Seamlessly bridge to accredited human practitioners when the threshold warrants specialized care.
+              </p>
+</div>
+</div>
+<p class="apple-reveal font-headline-sm text-headline-sm italic text-primary pt-space-xs">
+            For everyone. Not just those who can afford a clinic.
+          </p>
+</div>
+<!-- Right Physical Phone Showcase with Smooth Interactive Crossfade -->
+<div class="apple-reveal lg:col-span-6 flex justify-center">
+<div class="relative w-full max-w-sm rounded-[40px] bg-surface-container-low p-4 shadow-[0_24px_60px_rgba(43,35,80,0.12)] border border-white/60">
+<div class="rounded-[32px] bg-pure-white p-6 space-y-space-md shadow-sm transition-all duration-500 ease-out" id="phone-display-inner">
+<!-- App Header Mock -->
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-text-muted" id="phone-kicker">Personal Trajectory</span>
+<div class="font-headline-sm text-headline-sm text-text-primary font-semibold" id="phone-title">Morning Cadence</div>
+</div>
+<div class="w-10 h-10 rounded-full bg-champagne-panel flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]" id="phone-icon">spa</span>
+</div>
+</div>
+<!-- Graphic Metric Display (Sparkline / Autonomic) -->
+<div class="p-space-md rounded-2xl bg-surface-container/60 space-y-space-sm">
+<div class="flex justify-between items-center text-label-md font-label-md">
+<span class="text-text-muted" id="phone-metric-label">Autonomic Balance</span>
+<span class="text-primary font-semibold" id="phone-metric-val">92% Restored</span>
+</div>
+<!-- Interactive SVG Sparkline -->
+<svg class="w-full h-12 stroke-primary fill-none transition-all duration-500" stroke-width="2" viewbox="0 0 260 50">
+<path d="M0,35 Q30,10 60,25 T120,15 T180,30 T240,10 T260,18" id="sparkline-path" stroke-linecap="round"></path>
+<circle class="fill-secondary stroke-pure-white" cx="240" cy="10" r="4" stroke-width="2"></circle>
+</svg>
+<div class="flex justify-between text-label-sm font-label-sm text-text-muted pt-1">
+<span>06:00 AM</span>
+<span>Deep Rest</span>
+<span>Present Moment</span>
+</div>
+</div>
+<!-- Highlight Insight Card -->
+<div class="p-space-md rounded-2xl bg-champagne-panel/40 space-y-2 border border-[#D9C7A8]/30">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-md text-label-md font-semibold text-deep-aubergine uppercase tracking-wider" id="phone-highlight-tag">Portrait Highlight</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-primary leading-snug" id="phone-highlight-body">
+                  Cognitive overload shifted 34% into reflective stillness following night-time pranayama check-ins.
+                </p>
+</div>
+<div class="pt-2 flex items-center justify-between text-label-sm font-label-sm text-secondary font-medium cursor-pointer hover:translate-x-1 transition-transform">
+<span>View Full Clinical Analysis</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: THE SILENT MAJORITY WITH COUNT-UP STATISTIC -->
+<section class="relative w-full py-space-xl bg-surface-container-low px-gutter-mobile lg:px-gutter" id="silent-majority-section">
+<div class="max-w-5xl mx-auto flex flex-col items-center text-center">
+<span class="apple-reveal font-label-sm text-label-sm uppercase tracking-[0.32em] text-secondary font-semibold block mb-space-xs">Why This Exists</span>
+<!-- Giant 80% Animated Count-Up -->
+<div class="apple-reveal font-display-hero text-display-hero lg:text-[116px] text-deep-aubergine font-normal my-space-xs tracking-tight leading-none" id="count-up-stat">
+          0%
+        </div>
+<p class="apple-reveal font-headline-md text-headline-sm lg:text-headline-md text-text-primary max-w-2xl mx-auto mb-space-xl font-normal leading-snug">
+          of students in distress never tell a single member of staff.
+        </p>
+<!-- Bento Information Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg w-full text-left">
+<div class="apple-reveal p-space-lg rounded-3xl bg-pure-white shadow-[0_4px_20px_rgba(43,35,80,0.04)] space-y-space-xs border border-transparent hover:border-[#D9C7A8]/40 transition-colors">
+<div class="w-10 h-10 rounded-2xl bg-champagne-panel flex items-center justify-center text-secondary mb-space-sm">
+<span class="material-symbols-outlined text-[22px]">group</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-semibold">1 Counselor : 500 Students</h3>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed">
+              Where the mandate exists at all. Institutional staff are physically overwhelmed by volume, leaving low-amplitude distress utterly invisible.
+            </p>
+</div>
+<div class="apple-reveal p-space-lg rounded-3xl bg-pure-white shadow-[0_4px_20px_rgba(43,35,80,0.04)] space-y-space-xs border border-transparent hover:border-[#D9C7A8]/40 transition-colors">
+<div class="w-10 h-10 rounded-2xl bg-champagne-panel flex items-center justify-center text-primary mb-space-sm">
+<span class="material-symbols-outlined text-[22px]">warning</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-semibold">Identified at Crisis</h3>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed">
+              Intervention happens at emergency escalation, not during early cognitive formation. Zen bridges the critical silent window before damage solidifies.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: THREE DOORS (SMOOTH CARD ELEVATION & GOLD ARROW TRANSITIONS) -->
+<section class="relative w-full py-space-xl bg-pure-white px-gutter-mobile lg:px-gutter">
+<div class="max-w-7xl mx-auto">
+<div class="text-center max-w-xl mx-auto mb-space-xl apple-reveal">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.32em] text-secondary font-semibold block mb-space-xs">Ecosystem</span>
+<h2 class="font-headline-lg text-headline-md lg:text-headline-lg text-text-primary">Go deeper into the intelligence.</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Door 1: Schools -->
+<a class="door-card apple-reveal group p-space-lg rounded-3xl bg-surface-container-low hover:bg-champagne-panel/60 transition-all duration-500 shadow-sm flex flex-col justify-between h-72 border border-transparent hover:-translate-y-1.5 hover:shadow-[0_16px_36px_rgba(92,78,153,0.1)]" data-path="schools" href="#">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold block mb-2">Deployments</span>
+<h3 class="font-headline-md text-headline-sm text-deep-aubergine mb-space-sm font-semibold">For Schools</h3>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed">
+                The same intelligence, guarding a generation with sovereign aggregate insights.
+              </p>
+</div>
+<div class="flex items-center text-primary group-hover:text-secondary font-label-md text-label-md tracking-wider uppercase font-semibold transition-colors">
+<span>Explore Campus Systems</span>
+<span class="material-symbols-outlined text-[18px] ml-1 transition-transform group-hover:translate-x-1.5">arrow_forward</span>
+</div>
+</a>
+<!-- Door 2: Science -->
+<a class="door-card apple-reveal group p-space-lg rounded-3xl bg-surface-container-low hover:bg-champagne-panel/60 transition-all duration-500 shadow-sm flex flex-col justify-between h-72 border border-transparent hover:-translate-y-1.5 hover:shadow-[0_16px_36px_rgba(92,78,153,0.1)]" data-path="science" href="#">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold block mb-2">Methodology</span>
+<h3 class="font-headline-md text-headline-sm text-deep-aubergine mb-space-sm font-semibold">The Science</h3>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed">
+                Built alongside licensed clinical psychologists, never instead of them.
+              </p>
+</div>
+<div class="flex items-center text-primary group-hover:text-secondary font-label-md text-label-md tracking-wider uppercase font-semibold transition-colors">
+<span>Review Clinical Rigor</span>
+<span class="material-symbols-outlined text-[18px] ml-1 transition-transform group-hover:translate-x-1.5">arrow_forward</span>
+</div>
+</a>
+<!-- Door 3: About -->
+<a class="door-card apple-reveal group p-space-lg rounded-3xl bg-surface-container-low hover:bg-champagne-panel/60 transition-all duration-500 shadow-sm flex flex-col justify-between h-72 border border-transparent hover:-translate-y-1.5 hover:shadow-[0_16px_36px_rgba(92,78,153,0.1)]" data-path="about" href="#">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold block mb-2">Philosophy</span>
+<h3 class="font-headline-md text-headline-sm text-deep-aubergine mb-space-sm font-semibold">Our Story</h3>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed">
+                One conviction: no one should suffer unheard, unseen, or unassisted.
+              </p>
+</div>
+<div class="flex items-center text-primary group-hover:text-secondary font-label-md text-label-md tracking-wider uppercase font-semibold transition-colors">
+<span>Read Founding Creed</span>
+<span class="material-symbols-outlined text-[18px] ml-1 transition-transform group-hover:translate-x-1.5">arrow_forward</span>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- SECTION 7: THE OATH -->
+<section class="relative w-full py-[160px] lg:py-[200px] bg-pure-white px-gutter-mobile lg:px-gutter flex flex-col items-center justify-center text-center">
+<div class="max-w-3xl mx-auto space-y-space-xl">
+<span class="apple-reveal font-label-sm text-label-sm uppercase tracking-[0.35em] text-secondary font-semibold block">
+          What We Will Never Do
+        </span>
+<div class="apple-reveal space-y-space-lg font-headline-lg text-headline-sm sm:text-headline-md lg:text-headline-lg text-text-primary font-normal tracking-tight">
+<p class="transition-opacity duration-300 hover:opacity-60 cursor-default">We will never read what you confide.</p>
+<p class="transition-opacity duration-300 hover:opacity-60 cursor-default">We will never diagnose.</p>
+<p class="transition-opacity duration-300 hover:opacity-60 cursor-default">We will never replace your clinician.</p>
+<p class="transition-opacity duration-300 hover:opacity-60 cursor-default">We will never compete for your attention.</p>
+<p class="transition-opacity duration-300 hover:opacity-80 italic text-primary cursor-default">We will never sell your mind's data — to anyone, for anything.</p>
+</div>
+<div class="apple-reveal pt-space-md flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-champagne-panel flex items-center justify-center text-secondary mb-2 shadow-sm">
+<span class="material-symbols-outlined text-[24px]">verified_user</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-text-muted font-medium">Alvatis Cognitive Protocol</span>
+</div>
+</div>
+</section>
+<!-- SECTION 8: FINALE (EXACTLY ONE DARK SECTION: AUBERGINE #2B2350 CRESCENDO) -->
+<section class="relative w-full py-space-xl bg-deep-aubergine text-pure-white px-gutter-mobile lg:px-gutter overflow-hidden" id="finale-section">
+<!-- Dense Layered Ambient Gold Dust Canvas -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden" id="finale-dust-field">
+<div class="absolute w-1 h-1 rounded-full bg-satin-gold-bright/40 top-10 left-1/4 animate-pulse parallax-finale" data-depth="0.04" style="animation-duration: 4.5s;"></div>
+<div class="absolute w-1.5 h-1.5 rounded-full bg-satin-gold-bright/35 top-1/2 left-10 animate-ping parallax-finale" data-depth="0.08" style="animation-duration: 7s;"></div>
+<div class="absolute w-1 h-1 rounded-full bg-satin-gold-bright/30 top-3/4 left-1/3 animate-pulse parallax-finale" data-depth="0.05" style="animation-duration: 5s;"></div>
+<div class="absolute w-2 h-2 rounded-full bg-satin-gold-bright/25 top-20 right-1/4 animate-pulse parallax-finale" data-depth="0.06" style="animation-duration: 6s;"></div>
+<div class="absolute w-1 h-1 rounded-full bg-satin-gold-bright/40 top-2/3 right-12 animate-ping parallax-finale" data-depth="0.1" style="animation-duration: 8s;"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[540px] h-[540px] rounded-full bg-primary/30 blur-[110px] pointer-events-none"></div>
+</div>
+<div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center text-center space-y-space-lg">
+<!-- Luminous Lotus on the Aubergine Horizon -->
+<div class="apple-reveal w-16 h-16 rounded-full bg-white/10 p-2 shadow-[0_0_40px_rgba(217,199,168,0.45)] flex items-center justify-center border border-white/20">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="#D9C7A8" r="12"></circle>
+<path d="M50,15 C60,30 60,40 50,50 C40,40 40,30 50,15 Z" fill="#cdbefb" opacity="0.65"></path>
+<path d="M50,85 C60,70 60,60 50,50 C40,60 40,70 50,85 Z" fill="#cdbefb" opacity="0.65"></path>
+<path d="M15,50 C30,60 40,60 50,50 C40,40 30,40 15,50 Z" fill="#cdbefb" opacity="0.65"></path>
+<path d="M85,50 C70,60 60,60 50,50 C60,40 70,40 85,50 Z" fill="#cdbefb" opacity="0.65"></path>
+</svg>
+</div>
+<!-- Ivory Playfair Statement -->
+<h2 class="apple-reveal font-display-hero text-headline-lg lg:text-display-hero text-champagne-panel tracking-tight max-w-3xl leading-tight">
+          The next decade of mental wellness belongs to those who act now.
+        </h2>
+<!-- Magnetic Lilac Pill CTA with aura glow -->
+<div class="apple-reveal pt-space-xs">
+<a class="magnetic-btn inline-flex items-center justify-center px-space-xl py-space-md rounded-full bg-primary-container hover:bg-primary text-pure-white font-label-md text-label-md uppercase tracking-[0.1em] shadow-[0_8px_32px_rgba(92,78,153,0.5)] active:scale-95 transition-all duration-300" href="mailto:management@zenark.in">
+            Talk to us
+          </a>
+</div>
+<!-- Hairline Contact Details -->
+<div class="apple-reveal pt-space-xl flex flex-wrap items-center justify-center gap-space-md font-label-sm text-label-sm text-tertiary-fixed-dim/80 uppercase tracking-[0.12em]">
+<a class="hover:text-satin-gold-bright transition-colors" href="mailto:management@zenark.in">management@zenark.in</a>
+<span>•</span>
+<span>Bengaluru</span>
+<span>•</span>
+<span>United Arab Emirates</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Global Footer -->
+<footer class="w-full bg-surface-container-low shadow-[0_-1px_12px_rgba(43,35,80,0.03)]">
+<div class="max-w-7xl mx-auto px-gutter-mobile lg:px-gutter py-space-xl">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-xl mb-space-xl">
+<div class="md:col-span-5 space-y-space-md">
+<div class="font-headline-sm text-headline-sm text-text-primary tracking-[0.35em] uppercase">
+          Z E N A R K<span class="text-primary-container font-headline-sm ml-[1px]">.</span>
+</div>
+<p class="font-body-md text-body-md text-text-muted max-w-sm">
+          Hyper-refined empathetic artificial intelligence harmonizing human psychology with hardware-grade precision.
+        </p>
+<div class="flex items-center gap-space-md pt-space-xs">
+<span class="inline-flex items-center gap-space-xs font-label-sm text-label-sm uppercase tracking-[0.06em] text-secondary font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>Bengaluru
+          </span>
+<span class="text-outline-variant font-label-sm text-label-sm">•</span>
+<span class="inline-flex items-center gap-space-xs font-label-sm text-label-sm uppercase tracking-[0.06em] text-secondary font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>United Arab Emirates
+          </span>
+</div>
+</div>
+<div class="md:col-span-3 space-y-space-md">
+<span class="font-label-md text-label-md uppercase tracking-[0.08em] text-deep-aubergine font-semibold block">Architectures</span>
+<ul class="space-y-space-sm">
+<li class="leading-none"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors leading-relaxed" data-path="home" href="#">Conscious Core</a></li>
+<li class="leading-none"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors leading-relaxed" data-path="schools" href="#">Institutional Systems</a></li>
+<li class="leading-none"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors leading-relaxed" data-path="science" href="#">Clinical Validation</a></li>
+<li class="leading-none"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors leading-relaxed" data-path="about" href="#">Leadership &amp; Ethics</a></li>
+</ul>
+</div>
+<div class="md:col-span-4 space-y-space-md">
+<span class="font-label-md text-label-md uppercase tracking-[0.08em] text-deep-aubergine font-semibold block">Direct Engagement</span>
+<p class="font-body-sm text-body-sm text-text-muted">For sovereign institutional deployments, clinical inquiries, and executive partnerships.</p>
+<div class="pt-space-xs">
+<a class="font-body-md text-body-md text-primary font-medium hover:text-deep-aubergine transition-colors underline decoration-outline-variant underline-offset-4" href="mailto:management@zenark.in">management@zenark.in</a>
+</div>
+</div>
+</div>
+<div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md bg-surface-container-high/40 rounded-xl px-space-lg py-space-md">
+<p class="font-label-sm text-label-sm text-text-muted tracking-[0.06em] uppercase">© 2026 Alvatis Labs LLP. All clinical &amp; algorithmic rights reserved.</p>
+<div class="flex items-center gap-space-lg">
+<span class="font-label-sm text-label-sm text-text-muted tracking-[0.06em] uppercase">Privacy Protocol</span>
+<span class="font-label-sm text-label-sm text-text-muted tracking-[0.06em] uppercase">Cognitive Integrity</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Interactive Scripts: Parallax, Apple Reveals, Count-Up, Chat & Phone Crossfades -->
+<script>
+  // 1. APPLE-GRADE SCROLL REVEAL OBSERVER
+  document.addEventListener('DOMContentLoaded', () => {
+    const revealElements = document.querySelectorAll('.apple-reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealElements.forEach(el => observer.observe(el));
+
+    // 2. COUNT-UP ANIMATION FOR 80%
+    const statElem = document.getElementById('count-up-stat');
+    let counted = false;
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !counted) {
+          counted = true;
+          let current = 0;
+          const target = 80;
+          const duration = 1200; // ms
+          const start = performance.now();
+          function updateCount(time) {
+            const progress = Math.min((time - start) / duration, 1);
+            // Ease out cubic
+            const ease = 1 - Math.pow(1 - progress, 3);
+            current = Math.floor(ease * target);
+            statElem.textContent = current + '%';
+            if (progress < 1) {
+              requestAnimationFrame(updateCount);
+            } else {
+              statElem.textContent = target + '%';
+            }
+          }
+          requestAnimationFrame(updateCount);
+        }
+      });
+    }, { threshold: 0.4 });
+    if (statElem) statObserver.observe(statElem);
+
+    // 3. MOUSE-TRACKING PARALLAX (LERPED AT 0.08)
+    let mouseX = 0, mouseY = 0;
+    let targetX = 0, targetY = 0;
+    const heroSection = document.getElementById('hero-section');
+    const lotusStage = document.getElementById('lotus-stage');
+    const heroLight = document.getElementById('hero-ambient-light');
+    const dustLayers = document.querySelectorAll('.parallax-layer');
+
+    window.addEventListener('mousemove', (e) => {
+      const { innerWidth, innerHeight } = window;
+      targetX = (e.clientX - innerWidth / 2) / (innerWidth / 2);
+      targetY = (e.clientY - innerHeight / 2) / (innerHeight / 2);
+    });
+
+    function renderParallax() {
+      mouseX += (targetX - mouseX) * 0.08;
+      mouseY += (targetY - mouseY) * 0.08;
+
+      // Tilt Lotus up to ±5 deg
+      if (lotusStage) {
+        const tiltX = -mouseY * 5;
+        const tiltY = mouseX * 5;
+        lotusStage.style.transform = `rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
+      }
+
+      // Shift Ambient Light ±6px
+      if (heroLight) {
+        heroLight.style.transform = `translate(calc(-50% + ${(mouseX * 6).toFixed(1)}px), calc(-50% + ${(mouseY * 6).toFixed(1)}px))`;
+      }
+
+      // Shift Dust Layers ±8px by depth
+      dustLayers.forEach(layer => {
+        const depth = parseFloat(layer.getAttribute('data-depth') || '0.05');
+        const offsetX = (mouseX * depth * 80).toFixed(1);
+        const offsetY = (mouseY * depth * 80).toFixed(1);
+        layer.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+      });
+
+      requestAnimationFrame(renderParallax);
+    }
+    requestAnimationFrame(renderParallax);
+
+    // 4. MAGNETIC BUTTONS (4px cursor pull)
+    const magneticBtns = document.querySelectorAll('.magnetic-btn');
+    magneticBtns.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const btnX = e.clientX - rect.left - rect.width / 2;
+        const btnY = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${(btnX * 0.16).toFixed(1)}px, ${(btnY * 0.16).toFixed(1)}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0px, 0px)';
+      });
+    });
+  });
+
+  // 5. "MEET ZEN" LIVE CHAT & VOICE TOGGLE
+  let isVoiceMode = false;
+  function toggleVoiceMode() {
+    isVoiceMode = !isVoiceMode;
+    const chatStream = document.getElementById('chat-stream');
+    const voicePanel = document.getElementById('voice-mode-panel');
+    const voiceLabel = document.getElementById('voice-label');
+    const statusText = document.getElementById('os-status-text');
+
+    if (isVoiceMode) {
+      chatStream.classList.add('hidden');
+      voicePanel.classList.remove('hidden');
+      voicePanel.classList.add('flex');
+      voiceLabel.textContent = "Chat";
+      statusText.textContent = "Voice • 5.5 bpm autonomic breath sync";
+    } else {
+      voicePanel.classList.add('hidden');
+      voicePanel.classList.remove('flex');
+      chatStream.classList.remove('hidden');
+      voiceLabel.textContent = "Voice";
+      statusText.textContent = "Active • Introspective listening";
+    }
+  }
+
+  function triggerDemoChat(userText) {
+    if (isVoiceMode) toggleVoiceMode();
+    const chatStream = document.getElementById('chat-stream');
+    const typingBubble = document.getElementById('typing-bubble');
+    if (!chatStream || !typingBubble) return;
+
+    // 1. Append User Message
+    const userBubble = document.createElement('div');
+    userBubble.className = 'flex justify-end';
+    userBubble.innerHTML = `
+      <div class="max-w-[82%] p-3 rounded-2xl rounded-tr-sm bg-primary-container text-body-sm text-pure-white leading-relaxed shadow-sm">
+        ${userText}
+      </div>
+    `;
+    chatStream.appendChild(userBubble);
+    chatStream.scrollTop = chatStream.scrollHeight;
+
+    // 2. Select Response
+    let botResponse = "I hear the weight behind those words. Let's ground this moment together: exhale softly, and remember your worth isn't determined by an arbitrary deadline.";
+    if (userText.includes("behind")) {
+      botResponse = "Comparison is a heavy anchor. In DBT, we remind ourselves that everyone's internal cadence is unique. Where in your body are you feeling this tension right now?";
+    } else if (userText.includes("vent")) {
+      botResponse = "I'm listening without any judgment, advice, or rush. Speak as freely and unedited as you need to. I am right here.";
+    }
+
+    // 3. Show 3-dot Typing Indicator for 900ms
+    typingBubble.classList.remove('hidden');
+    chatStream.scrollTop = chatStream.scrollHeight;
+
+    setTimeout(() => {
+      typingBubble.classList.add('hidden');
+
+      const botWrapper = document.createElement('div');
+      botWrapper.className = 'flex gap-2 items-start';
+      botWrapper.innerHTML = `
+        <div class="w-6 h-6 rounded-full bg-primary flex-shrink-0 flex items-center justify-center text-[10px] text-pure-white font-serif">Z</div>
+        <div class="max-w-[82%] p-3 rounded-2xl rounded-tl-sm bg-white/10 text-body-sm text-pure-white leading-relaxed shadow-sm border border-white/5 typewriter-target"></div>
+      `;
+      chatStream.appendChild(botWrapper);
+      const target = botWrapper.querySelector('.typewriter-target');
+
+      // 4. Typewriter 30ms/character
+      let charIndex = 0;
+      const timer = setInterval(() => {
+        if (charIndex < botResponse.length) {
+          target.textContent += botResponse.charAt(charIndex);
+          charIndex++;
+          chatStream.scrollTop = chatStream.scrollHeight;
+        } else {
+          clearInterval(timer);
+        }
+      }, 30);
+    }, 900);
+  }
+
+  // 6. CNS SYNAPSE INTERACTION
+  function pulseCenter() {
+    const centerLotus = document.querySelector('#synapse-network .rounded-full.bg-pure-white');
+    if (centerLotus) {
+      centerLotus.classList.add('scale-110', 'shadow-[0_0_30px_rgba(217,199,168,0.7)]');
+      setTimeout(() => {
+        centerLotus.classList.remove('scale-110', 'shadow-[0_0_30px_rgba(217,199,168,0.7)]');
+      }, 400);
+    }
+  }
+
+  // 7. "FOR YOU" PHONE STATE DYNAMIC CROSSFADE
+  const featureData = {
+    space: {
+      kicker: "Personal Trajectory",
+      title: "Morning Cadence",
+      icon: "spa",
+      metricLabel: "Autonomic Balance",
+      metricVal: "92% Restored",
+      highlightTag: "Portrait Highlight",
+      highlightBody: "Cognitive overload shifted 34% into reflective stillness following night-time pranayama check-ins.",
+      sparkPath: "M0,35 Q30,10 60,25 T120,15 T180,30 T240,10 T260,18"
+    },
+    streaks: {
+      kicker: "Mindful Cadence",
+      title: "14-Day Presence",
+      icon: "self_improvement",
+      metricLabel: "Consistency Rhythm",
+      metricVal: "Unbroken Rhythm",
+      highlightTag: "Rhythm Milestone",
+      highlightBody: "Morning check-ins logged for 14 consecutive mornings without algorithmic notifications or pressure.",
+      sparkPath: "M0,40 Q40,30 80,20 T160,18 T200,12 T240,8 T260,6"
+    },
+    reports: {
+      kicker: "Longitudinal Care",
+      title: "October Synthesis",
+      icon: "pie_chart",
+      metricLabel: "Affect Stability",
+      metricVal: "+28% Resilience",
+      highlightTag: "Clinical Extract",
+      highlightBody: "Somatic stress markers decreased in response to guided journaling prompts before academic presentations.",
+      sparkPath: "M0,30 Q30,40 70,25 T140,20 T190,15 T240,14 T260,10"
+    },
+    clinical: {
+      kicker: "Human Bridge",
+      title: "Dr. Aarti Varma, PsyD",
+      icon: "medical_services",
+      metricLabel: "Relay Readiness",
+      metricVal: "Direct Escort",
+      highlightTag: "Clinical Note",
+      highlightBody: "Secure summary relay generated. Patient consent token confirmed for licensed clinical consultation.",
+      sparkPath: "M0,20 Q40,20 80,18 T160,16 T200,14 T240,12 T260,12"
+    }
+  };
+
+  function selectFeature(key, cardEl) {
+    // Highlight Card
+    document.querySelectorAll('.feature-card').forEach(c => {
+      c.classList.remove('bg-champagne-panel/60', 'border-primary/20');
+      c.classList.add('bg-surface-container-low', 'border-transparent');
+    });
+    cardEl.classList.add('bg-champagne-panel/60', 'border-primary/20');
+    cardEl.classList.remove('bg-surface-container-low', 'border-transparent');
+
+    // Crossfade Phone
+    const displayInner = document.getElementById('phone-display-inner');
+    displayInner.style.opacity = '0.3';
+    displayInner.style.transform = 'translateY(6px)';
+
+    setTimeout(() => {
+      const d = featureData[key];
+      if (!d) return;
+      document.getElementById('phone-kicker').textContent = d.kicker;
+      document.getElementById('phone-title').textContent = d.title;
+      document.getElementById('phone-icon').textContent = d.icon;
+      document.getElementById('phone-metric-label').textContent = d.metricLabel;
+      document.getElementById('phone-metric-val').textContent = d.metricVal;
+      document.getElementById('phone-highlight-tag').textContent = d.highlightTag;
+      document.getElementById('phone-highlight-body').textContent = d.highlightBody;
+      document.getElementById('sparkline-path').setAttribute('d', d.sparkPath);
+
+      displayInner.style.opacity = '1';
+      displayInner.style.transform = 'translateY(0)';
+    }, 220);
+  }
+</script>
+</body></html>
